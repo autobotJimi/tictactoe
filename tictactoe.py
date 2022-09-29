@@ -22,3 +22,13 @@ def full_board(board):
 #
 print(full_board(board))
 print(board)
+
+winning_combinations = {[row = 1: cols = 1, row = 1: cols = 2, row = 1, cols = 3], 
+                        [row = 2 : cols = 1, row = 2 : cols = 1, row = 2, cols = 3], 
+                        [row = 3 : cols = 1, row = 3 : cols = 2, row = 3 : cols = 3], 
+                        [row = 1 : col = 1, row = 2 : cols = 1, row = 3 : col = 1],
+                        [row = 1 : col = 2, row = 2 : cols = 2, row = 3 : col = 2],
+                        [row = 1 : col = 3, row = 2 : cols = 3, row = 3 : col = 3],
+                        [row = 1 : col = 1, row = 2 : cols = 2, row = 3 : col = 3],
+                        [row = 3 : col = 1, row = 2 : cols = 2, row = 1 : col = 3]
+                        }
