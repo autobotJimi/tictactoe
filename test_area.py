@@ -1,3 +1,8 @@
+import string 
+import collections
+string.ascii("f")
+
+
 board_dict = {"rows":{1:("_","_","_"),
                       2:("_","_","_"),
                       3:("_","_","_")}}
