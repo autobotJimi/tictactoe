@@ -1,6 +1,12 @@
 rows, cols = (3, 3)
 board = [['']*cols]*rows
 
+class Player():
+    def __init__(self, name, token) -> None:
+        self.name = name
+        self.token = token
+    
+
 def full_board(board):
     squares_filled = 0
     for square in board:
