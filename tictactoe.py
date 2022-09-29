@@ -12,6 +12,6 @@ def full_board(board):
         return True
     else:
         return False
-
+#
 print(full_board(board))
 print(board)
