@@ -1,8 +1,11 @@
 rows, cols = (3, 3)
-board = [['']*cols]*rows
+
+board={"rows":{1:{"_","_","_"},
+               2:{"_","_","_"},
+               3:{"_","_","_"}}}
 
 class Player():
-    def __init__(self, name, token) -> None:
+    def __init__(self, name, token):
         self.name = name
         self.token = token
     # the player
@@ -20,5 +23,12 @@ def full_board(board):
     else:
         return False
 
-print(full_board(board))
-print(board)
+
+def intro():
+    p1_name = input("Player 1 Name: ")
+    p1_token = input("Player 1 Token: ")
+    player_1 = Player(p1_name, p1_token)
+    p2_name = input("Player 2 Name: ")
+    p2_token = input("Player 2 Token: ")
+    player_2 = Player(p2_name, p2_token)
+    
