@@ -1,7 +1,6 @@
 import string 
 import collections
-string.ascii("f")
-
+import os
 
 board_dict = {"rows":{1:("_","_","_"),
                       2:("_","_","_"),
@@ -14,10 +13,12 @@ print(board_dict["rows"][2][0] + "|" + board_dict["rows"][2][1] + "|" + board_di
 #--Third Row
 print(board_dict["rows"][3][0] + "|" + board_dict["rows"][3][1] + "|" + board_dict["rows"][3][2])
 
-print("""
+print(os.name)
 
-Row 1: 1|2|3
-Row 2: 1|2|3
-Row 3: 1|2|3
+# print("""
 
-""")
+# Row 1: 1|2|3
+# Row 2: 1|2|3
+# Row 3: 1|2|3
+
+# """)
