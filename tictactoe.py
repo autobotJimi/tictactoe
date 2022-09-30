@@ -20,6 +20,9 @@ class Player():
     def __init__(self, name, token):
         self.name = name
         self.token = token
+        self.robot = False
+        if 'robo' in name:
+            self.robot = True
     # the player
     
 
@@ -64,7 +67,7 @@ class Game():
             if (board['rows'][row][0] == board['rows'][row][1] == board['rows'][row][2] == symbol_1):
                 winner = self.players[0]
             elif (board['rows'][row][0] == board['rows'][row][1] == board['rows'][row][2] == symbol_2):
-                winner = self.players[1].name
+                winner = self.players[1]
         #columns
         for col in range(0, 2):
             if (board['rows'][1][col] == board['rows'][2][col] == board['rows'][3][col] == symbol_1):
@@ -83,22 +86,25 @@ class Game():
                     
         return winner
 
-def player_move():
+def player_move(player):
     used_words = False
-    position = input("What's your next move?\n(examples: \"12\" or \"top, middle\") ")
-    try:
-        position = int(position) # they used numbers
-        position = str(position)
-        position = (position[0], position[1])
-    except ValueError:
-        used_words = True # they used words
-        position = (position[:position.find(",")], position[position.find(",")+2:])
-        position = (col_words[position[1]], row_words[position[0]])
-    finally:
-        x = int(position[0])
-        y = int(position[1])
-        coords_tup = (x, y)
-        return coords_tup
+    if not player.robot:
+        position = input("What's your next move?\n(examples: \"12\" or \"top, middle\") ")
+        try:
+            position = int(position) # they used numbers
+            position = str(position)
+            position = (position[0], position[1])
+        except ValueError:
+            used_words = True # they used words
+            position = (position[:position.find(",")], position[position.find(",")+2:])
+            position = (col_words[position[1]], row_words[position[0]])
+        finally:
+            x = int(position[0])
+            y = int(position[1])
+            coords_tup = (x, y)
+            return coords_tup
+    else:
+        return (randint(1, 3), randint(1, 3))
 
 
 # --- beginginng of the actual game
@@ -132,7 +138,7 @@ while gaming:
 
     if not change_turn:
         print(f"{this_player.name}'s turn!")
-        this_move = player_move() # asks user, returns coords
+        this_move = player_move(this_player) # asks user, returns coords
         if this_game.move(this_move[0], this_move[1], this_player) == "_": # spot was not taken
             change_turn = True
             print("Moved successfully.")
