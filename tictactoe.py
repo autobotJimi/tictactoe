@@ -93,11 +93,9 @@ while gaming:
     'middle': 2, 
     'bottom': 3
     }
-col = {
+    col = {
     'left': 1, 
     'middle': 2, 
     'right': 3}
     active_player = this_game.players()
     print(f"{active_player}'s turn!")
-    
-
