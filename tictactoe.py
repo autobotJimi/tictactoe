@@ -1,3 +1,8 @@
+"""
+
+Jimi was here
+
+"""
 rows, cols = (3, 3)
 board = [['']*cols]*rows
 
