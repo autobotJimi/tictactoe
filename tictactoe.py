@@ -5,6 +5,7 @@ board = {"rows":{1:["_","_","_"],
                  2:["_","_","_"],
                  3:["_","_","_"]}}
 
+
 class Player():
     def __init__(self, name, token):
         self.name = name
@@ -44,7 +45,6 @@ class Game():
             board['rows'][y][x] = player.token
 
 
-
 p1_name = input("Player 1 Name: ")
 p1_token = input("Player 1 Token: ")
 player_1 = Player(p1_name, p1_token)
@@ -56,4 +56,4 @@ gaming = True
 
 while gaming:
     active_player = this_game.players()
-    print(f"'s turn!")
+    print(f"{active_player}'s turn!")
