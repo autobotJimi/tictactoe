@@ -29,18 +29,19 @@ class Game():
         self.turn = randint(0, len(self.players)-1)
     
     def __repr__(self) -> str:
-        print(" 1 | 2 | 3 |")
+        print("   | 1  | 2  | 3 |")
         print(" 1 " + str(board['rows'][1]))
         print(" 2 " + str(board['rows'][2]))
         print(" 3 " + str(board['rows'][3]))
     
-    def is_full(board):
+    def is_full(self):
         squares_filled = 0
-        for square in board:
-            if len(square) == 0:
-                pass
-            elif len(square) > 0:
-                squares_filled += 1
+        for board_row in board['rows'].values():
+            for square in board_row:
+                if square == "_":
+                    pass
+                else:
+                    squares_filled += 1
         if squares_filled == 9:
             return True
         else:
@@ -55,38 +56,31 @@ class Game():
         return initial_token
 
     def winning_combination(self): # board['rows'][row (1, 3)][col (0, 2)]
-        symbol_1 = self.players[0]
-        symbol_2 = self.players[1]
+        symbol_1 = self.players[0].token
+        symbol_2 = self.players[1].token
         winner = False
         #rows
         for row in range(1, 3):
             if (board['rows'][row][0] == board['rows'][row][1] == board['rows'][row][2] == symbol_1):
-                winner = True
-                print(f"{self.players[0]}, you won!")
+                winner = self.players[0]
             elif (board['rows'][row][0] == board['rows'][row][1] == board['rows'][row][2] == symbol_2):
-                winner = True
-                print(f"{self.players[1]}, you won!")
+                winner = self.players[1].name
         #columns
         for col in range(0, 2):
             if (board['rows'][1][col] == board['rows'][2][col] == board['rows'][3][col] == symbol_1):
-                winner = True
-                print(f"{self.players[0]}, you won!")
+                winner = self.players[0]
             elif (board['rows'][1][col] == board['rows'][2][col] == board['rows'][3][col] == symbol_2):
-                winner = True
-                print(f"{self.players[1]}, you won!")
+                winner = self.players[1]
         # diagnoals
         if board['rows'][1][0] == board['rows'][2][1] == board['rows'][3][2] == symbol_1: # (1, 1) (2, 2) (3, 1)
-            winner = True 
-            print(f"{self.players[0]}, you won!")
+            winner = self.players[0] 
         elif board['rows'][1][0] == board['rows'][2][1] == board['rows'][3][2] == symbol_2:
-            winner = True
-            print(f"{self.players[1]}, you won!")
+            winner = self.players[1]
         elif board['rows'][1][2] == board['rows'][2][1] == board['rows'][3][0] == symbol_1: # (1, 3) (2, 2) (3, 1)
-            winner = True
-            print(f"{self.players[0]}, you won!")
+            winner = self.players[0]
         elif board['rows'][1][2] == board['rows'][2][1] == board['rows'][3][0] == symbol_2:
-            winner = True
-            print(f"{self.players[1]}, you won!")
+            winner = self.players[1]
+                    
         return winner
 
 def player_move():
@@ -120,9 +114,6 @@ gaming = True
 change_turn = False
 
 while gaming:
-    if this_game.winning_combination() == True:
-        gaming = False
-
     # clear screen
     if os.name == "nt":
         os.system('cls')
@@ -130,6 +121,14 @@ while gaming:
         os.system('clear')
     # draw board
     this_game.__repr__()
+    
+    win_check = this_game.winning_combination() 
+    if not win_check and this_game.is_full():
+        print("There are no spaces left to play!\nIt's a draw.")
+        quit()
+    elif win_check:
+        print(f"{win_check.name}, you won!")
+        quit()
 
     if not change_turn:
         print(f"{this_player.name}'s turn!")
