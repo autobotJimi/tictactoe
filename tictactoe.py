@@ -42,15 +42,16 @@ col = {
     'left': 0, 
     'middle': 1, 
     'right': 2}
-​
+
+
 def player_move():
     position = input("What's your next move? ")
     position = position.split(' ')
     x = row[position[0]]
     y = col[position[1]]
     return x, y
-​
 print(player_move())
+
 
 
 def winning_combination(board, symbol_1, symbol_2):
@@ -85,3 +86,5 @@ def winning_combination(board, symbol_1, symbol_2):
         winner = False
         print("Player " + symbol_2 + ", you won!")
     return winner
+
+
