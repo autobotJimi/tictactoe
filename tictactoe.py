@@ -83,6 +83,16 @@ class Game():
             winner = self.players[0]
         elif board['rows'][1][2] == board['rows'][2][1] == board['rows'][3][0] == symbol_2:
             winner = self.players[1]
+
+        # extras
+        elif board['rows'][3][2] == board['rows'][3][1] == board['rows'][3][0] == symbol_1:
+            winner = self.players[0]
+        elif board['rows'][3][2] == board['rows'][3][1] == board['rows'][3][0] == symbol_2:
+            winner = self.players[1]
+        elif board['rows'][1][2] == board['rows'][2][2] == board['rows'][3][2] == symbol_1:
+            winner = self.players[0]
+        elif board['rows'][1][2] == board['rows'][2][2] == board['rows'][3][2] == symbol_2:
+            winner = self.players[1]
                     
         return winner
 
@@ -119,6 +129,7 @@ this_player = choice(this_game.players)
 gaming = True
 change_turn = False
 
+win_check = this_game.winning_combination()
 while gaming:
     # clear screen
     if os.name == "nt":
@@ -151,4 +162,5 @@ while gaming:
         else:
             this_player = this_game.players[0]
         change_turn = False
+    win_check = this_game.winning_combination()
 
